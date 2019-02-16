@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script  type="text/javascript" src="jquery-2.2.0.min.js"></script>
+        <script  type="text/javascript" src="angular.min.js"></script>
+     </head> 
+        <body>
+        <div ng-app >
+            
+        <!-- <div ng-app  ng-include="$sce.trustAsResourceUrl('http://www.ebay.com/')"> we cant access this link beacause ebay is block when u get an error click on link in console it will take you to Angular js --->
+            
+            </div>
+            <div ng-include="'dummy.html'">
+            </div>
+            
+            
+        <div id="loadhtml"></div>
+        <input type="button" id="load" value="load External html">
+        
+                <script>
+                 var el=$('#load');
+                    el.on('click',function(e){
+                    $('#loadhtml').load('dummy.html');    
+                        
+                    });
+                
+                </script>
+            </body>
+    
+</html>

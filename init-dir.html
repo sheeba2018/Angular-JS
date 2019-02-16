@@ -1,0 +1,33 @@
+
+<html>
+    <head>
+
+<script  type="text/javascript" src="angular.min.js"></script>
+ <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    </head>   
+    <body>
+        <div ng-app ng-init="person={name:'john', age:36}">
+            <h2>ng-init
+            </h2>
+         {{person.name}} {{person.age}}
+            <input type="checkbox" ng-model="checked">
+            
+            <!--commet when value is true show will display hide will show when it is false  <div ng-show="true"> --->
+            
+            <div ng-show="checked"><!--true/false-->
+                <h3>show</h3>
+            <div ng-include="'external-include.html'">
+                </div>
+            </div>
+           
+            <!-- <div ng-hide="false"> --->
+  
+            <div ng-hide="checked">
+                <h3>hide concept</h3>
+            <div ng-include="'external-include.html'">
+                </div>
+            </div>
+            
+    </body>
+
+    </html>

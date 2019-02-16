@@ -1,0 +1,43 @@
+<html>
+    <head>
+         <script  type="text/javascript" src="angular.min.js"></script>
+  <!---   <style>
+            li{margin:10px; background:red; color:white;}
+            ul{display:-webkit-box;} this will give u default behaviour and give in line one by one.
+        </style>---->
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+            
+            <form ng-submit="addIteamToList()">
+            <input type="text" ng-model="item"  placeholder="Enter your item to add List">
+            <input type="submit" value="add Iteam"/>    
+            
+            </form>
+            <div>
+                <ul type=none;>
+                    <li ng-repeat="item in itemList">{{item.name}} {{item.satus}}            
+                    </li>
+                
+                </ul>
+            
+            </div>
+            
+        </div>
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+                $scope.itemList=[];
+                $scope.addIteamToList=function()
+                {
+                $scope.itemList.push({name:$scope.item, status:false}); 
+                $scope.item='';    
+                }
+                
+            });
+        
+        </script>
+    
+    </body>
+
+</html>

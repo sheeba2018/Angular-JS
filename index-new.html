@@ -1,0 +1,55 @@
+
+<html>
+    <head>
+       
+        
+        <script  type="text/javascript" src="angular.min.js"></script>
+  <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+        <p>Angular js</p>
+        
+        <div ng-app="myApp">
+            
+            <div ng-controller="MyFirstController">
+        
+        <input type="text" id="nggreeting" ng-model="nggreeting">
+               
+        <div id="nggreetingtxt"> {{nggreetingSubmit}}</div>
+            <br/><br/>
+            <input type="text" id="nggreeting" ng-model="nggreeting">
+        </div>
+            
+            <p> second controller</p>
+            
+            <div ng-controller="MySecondcontroller">
+        
+        <input type="text" id="nggreeting" ng-model="nggreeting">
+               
+        <div id="nggreetingtxt"> {{nggreetingSubmit}}</div>
+            <br/><br/>
+            <input type="text" id="nggreeting" ng-model="nggreeting">
+        </div>
+         </div>
+        
+        <script>
+            var module=angular.module("myApp",[]);
+            module.controller("MyFirstController", function($scope){
+                $scope.nggreeting="Angular App Test";
+                console.log("nggreeting:"+ $scope.nggreeting);
+            });
+           
+              module.controller("MySecondcontroller", function($scope){
+                $scope.nggreeting="Angular Second  App Test";
+                console.log("nggreeting:"+ $scope.nggreeting);
+            });
+           
+              
+           
+            
+             debugger;     
+        </script>
+        
+        
+        
+    </body>
+
+</html>

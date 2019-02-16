@@ -1,0 +1,57 @@
+<html>
+    <head>
+     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script  type="text/javascript" src="angular.min.js"></script>   
+   
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+</head>
+
+    <body ng-app="angularRoutes" ng-controller="HomeController">
+     
+        <h2>Hello {{name}} !!</h2>
+           <a href="#/first">First</a> <br/>
+         <a href="#/second">Second</a> <br/>
+        <a href="#/third">Third</a> <br/>
+        <a href="#camera/:name">camera</a> <br/>
+        <div>
+            <ng-view> </ng-view>
+        
+        </div>
+       
+        <script>
+        app=angular.module("angularRoutes", ['ngRoute']);
+        app.config(function($routeProvider){
+     $routeProvider.when('/home',{templateUrl:"indexRoute.html",controller:"HomeController"})  
+         .when('/first',{templateUrl:"template_1.html",controller:"FirstController"})
+         .when('/second',{templateUrl:"template_2.html",controller:"SecondController"})
+         .when('/third',{templateUrl:"template_1.html",controller:"SecondController"})
+        .when('/camera/:name',{templateUrl:"camera-view.html",controller:"ViewProduct"})
+         .otherwise({redirectTo:'/home'})
+        });    
+        app.controller("HomeController",function($scope){
+            $scope.name="john"; 
+        });
+            
+            /* i put this code all controller in app.js
+            app.controller("FirstController", function($scope){
+             $scope.persons=[{name:"John", age:45,email:"hohn@tshsg.com"},
+                            {name:"DOjo", age:65,email:"dojo@tshsg.com"},
+                             {name:"Alex", age:34,email:"alex123@tshsg.com"},
+                             {name:"mark", age:55,email:"markmark@sdg.com"}]  
+            });
+            
+            app.controller("SecondController", function($scope){
+             $scope.persons=[{name:"Jane", age:5,email:"hohn@tshsg.com"},
+                            {name:"Ellen", age:5,email:"dojo@tshsg.com"},
+                             {name:"Bobi", age:34,email:"alex123@tshsg.com"},
+                             {name:"jesey", age:5,email:"markmark@sdg.com"}]  
+            });*/
+                                 
+                       
+        </script>
+        <script src="app.js"></script>
+        
+            
+    </body>
+    
+    </html>

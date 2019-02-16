@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+  <style>
+    table, th, td {
+    border: 1px solid blue;
+
+    </style>
+</head>
+    
+    <body>
+    <div ng-app="myApp" ng-controller="MyController" ng-init="numbers=[32,23,45,34,56,96]">
+        
+                     
+        <table>
+            <tr>
+                <th ng-click="order='name'"> Name</th>
+                <th ng-click="order='age'">Age</th>
+                <th ng-click="order='city'">City</th>
+            </tr>
+            <tr ng-repeat="person in persons | orderBy:order">
+              <td>{{person.name}}</td>
+               <td>{{person.age}}</td>
+               <td>{{person.city}}</td>
+            </tr>
+        </table><br/>
+                   
+    </div>
+        <script>
+          
+        var app=angular.module("myApp", []);
+        app.controller("MyController",function($scope){
+                 $scope.persons=[
+                {name:"john",age:30,city:"dallas"},
+                {name:"Adam",age:38,city:"NewYork"},
+                {name:"sudha",age:38,city:"India"},
+                {name:"Joshua",age:40,city:"Orlando"},
+                {name:"Mary",age:34,city:"Mimai"},
+                {name:"Mike",age:23,city:"Atlanta"}
+                ]               
+               });
+            
+        
+        </script>
+        
+    </body>
+</html>

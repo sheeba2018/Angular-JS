@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+        <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    </head>
+    <body>
+        <div ng-app="indexApp" ng-controller="FirstController">
+    
+    <ul type="none">
+    <li ng-repeat="person in persons">{{person.name}} {{person.age}} {{person.email}} </li>
+    
+    </ul>
+            
+        </div>
+        <script>
+      var myApp=angular.module("indexApp",[]);
+      myApp.controller("FirstController",function($scope) {
+        $scope.persons=[
+        {name:"sheeba", age:30, email:"sheebright@gmail.com"},
+        {name:"David", age:34, email:"pwdeveloper@gmail.com"},
+        {name:"Alicia", age:5, email:"alicisa@hotmail.com"},
+        {name:"Natasha", age:3, email:"natasha@rediffmail.com"}
+        ];
+        
+        });  
+            </script>    
+        
+    </body>
+
+</html>

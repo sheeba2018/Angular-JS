@@ -1,0 +1,37 @@
+<html>
+    <head>
+         <script  type="text/javascript" src="angular.min.js"></script>
+ 
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+            <div>{{dt | date:'medium'}}</div> 
+            <div>{{dt | date:'short'}}</div> 
+            <div>{{dt | date:'fullDate'}}</div> 
+            <div>{{dt | date:'mediumTime'}}</div> 
+            <div>{{dt | date:'shortTime'}}</div> 
+            <div>{{dt | date:'MM'}}</div> 
+            <div>{{dt | date:'MMM'}}</div>
+            <div>{{dt | date:'MMMM'}}</div> 
+            <div>{{dt | date:'d'}}</div>  
+            <div>{{dt | date:'dd'}}</div> 
+            <div>{{dt | date:'yy'}}</div> 
+            <div>{{dt | date:'yyyy'}}</div>  
+            <div>{{dt | date:'hh'}}</div> 
+            <div>{{dt | date:'mm'}}</div>  
+            <div>{{dt | date:'mm/dd/yyyy hh:mm:ss a'}}</div>  
+           
+            
+        </div>
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+                $scope.dt=new Date();
+               
+            });
+        
+        </script>
+    
+    </body>
+
+</html>

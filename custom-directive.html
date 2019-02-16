@@ -1,0 +1,55 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+  
+</head>
+    
+    <body>
+        
+    <div ng-app="myApp" ng-controller="MyController">
+   For Element: <div> <hello-world></hello-world><br/>
+         For Attribute:  <div Hello-world></div> <br/>
+        </div>
+    
+        
+   <div ng-app="myApp" ng-controller="SecondController">
+      For Class:    <div class="hello-World"></div>
+      For All :   <hello-world></hello-world>  <br/>
+        </div>
+        <script>
+         var app=angular.module("myApp", []);
+           app.directive("helloWorld", function(){
+               return {
+                   restrict:'E', // only Element
+                  restrict:'C', // for class
+                   restrict:'A', // for attribute*/
+                   restrict:'EAC',//for all three element, attribute , class.property must be separated by comma.
+                   
+                   replace:true, 
+//use comma to separate propery and replace true will replace directive by Hello world
+                  // template:'<h1> Hello World</h1>' or 
+                  // template:'<h1> Hello {{name}}</h1>'
+                   templateUrl:'angelschool.html'
+               }
+               
+           });
+           
+           
+        app.controller("MyController",function($scope){
+            $scope.name="Alicia, Natasha";
+            
+        });
+            
+            app.controller("SecondController",function($scope){
+             $scope.name="Sheeba", "David";
+            
+             });
+            //directive  uses the controller scope
+        </script>
+        
+    </body>
+        
+         <!--u can even define directive here like("myApp",[].filter or directicve ,but u can define only one directive so define down then u can define many directive. ) 
+        app.directive()    
+        
+</html>

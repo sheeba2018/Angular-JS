@@ -1,0 +1,90 @@
+<html>
+    
+  <head>
+     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script  type="text/javascript" src="angular.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+      <script src="https://code.angularjs.org/1.4.6/angular-resource.js"></script>
+      <style>
+          tr,thead{
+              border:1px solid black;
+          }
+          td,th{
+              border: 1px solid black;
+          }
+      </style>
+  </head>
+ <body ng-app="ResourceApp">
+    <div ng-controller="ResourceController">
+    
+        <input type="button" ng-click="loadData()" value="LoadUsers"/>
+        <table style="border:1px solid black">
+            <thead>
+            <th>id</th>
+            <th> name </th>
+                <th>user name</th>
+                <th>email</th>
+                <th>address(street)</th>
+                <th>city</th>
+                <th> zipcode</th>
+            </thead>
+            <tr ng-repeat=" user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+             <td>{{user.address.street}}</td>
+            <td>{{user.address.city}}</td>
+            <td>{{user.address.zipcode}}</td>
+                
+            </tr>
+        
+        </table>
+            
+     <script>
+        (function(){
+            
+          var  module=angular.module("ResourceApp",['ngRoute','ngResource']);
+          module.factory("UserService",['$http','$resource',function($http,$resource){
+              
+              return{
+                  getUserwithHttpSevice:function(){
+                      return $http.get('http://jsonplaceholder.typicode.com/users');
+                  },
+                
+                  getUserwithResourceSevice:function(){
+                      return data=$resource
+                      ('http://jsonplaceholder.typicode.com/users').query();
+                  }
+             } 
+              
+          }]);   
+            
+     module.controller("ResourceController",['$scope','UserService',function($scope,Userservice){
+                
+                $scope.loadData=function(){
+               /*Userservice.getUserwithHttpSevice()
+                .then(function(response){
+                    $scope.users=response.data;
+                                                    
+                }); */
+                 var query=Userservice.getUserwithResourceSevice();
+                    query.$promise.then(function(data){
+                        $scope.users=data;
+                    });
+                   
+                    
+                }
+            
+            }]);
+                
+                
+            })();
+            
+     </script>
+        
+        </div>
+    
+ </body>
+    
+</html>

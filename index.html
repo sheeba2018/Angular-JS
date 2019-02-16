@@ -1,0 +1,44 @@
+
+<html>
+    <head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+        <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    </head>
+    <body>
+        <p> The Javascript</p>
+        <input type="text" id="greeting">
+        <div id="jsgreeting"></div>
+        
+        <p>Jquery</p>
+        <br/><input type="text" id="jqgreetingtxt">
+        <div id="jqgreeting"></div>
+        
+        <p>Angular js</p>
+        
+        <div ng-app>
+        <br/><input type="text" id="nggreeting" ng-model="nggreeting">
+        <div id="nggreetingtxt"> {{nggreeting}}</div>
+        </div>
+        
+        <script>
+            var jsInput=document.getElementById("greeting");
+            var jsgreetingMsg=document.getElementById("jsgreeting");
+            jsInput.addEventListener("keypress", function(e){
+            jsgreetingMsg.innerHTML=jsInput.value;
+            });
+            
+            var jqInput=$('#jqgreetingtxt');
+            
+            var jqgreetingMsg=$('#jqgreeting');
+            jqInput.on("keypress",function(e){
+            jqgreetingMsg.html(jqInput.val());
+                       })
+            
+            
+        </script>
+        
+        
+        
+    </body>
+
+</html>

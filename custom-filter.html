@@ -1,0 +1,42 @@
+<html>
+    <head>
+      <script  type="text/javascript" src="angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+            {{price |currency}}<br/>
+            {{"Angularjs is a Javascript Framework" |countChar:'A':''}}<!-- instead of 'A' u can comapared any character.i.e r, t ,s--etc --->
+    <!-- countChar is the name of filter, input is first argument for"Angular----framework"
+countChar is afilter and second argument in function. you can give argument name anything i.e charToBeCompared. you can give as many as argument in function but must matched in {{here}}--->
+        </div>
+        <script>
+            var app=angular.module("myApp",[]);
+            app.filter("countChar", function(){
+                return function(input,charToBeCompared){
+                    var count=0;
+                    for(var x=0; x<input.length; x++)
+                        {
+                           if(input.charAt(x).toLowerCase()==charToBeCompared.toLowerCase())
+                            //here you can compared to upperCase also.
+                               count++
+                        }
+                    return count;
+                       }
+                        });
+          app.controller("MyController",function($scope){
+              $scope.price=99.99;
+              
+          });
+        /*   */
+            
+        /*  this is example string has method charAT get value at perticular position.
+        var str="Angular js is popular framework"
+        str.charAt (1)
+         "n" o/p
+       str.charAt (8)
+        "j"*/
+        </script>
+    
+    </body>
+
+</html>

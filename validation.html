@@ -1,0 +1,26 @@
+<html>
+    
+<head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script  type="text/javascript" src="angular.min.js"></script>   
+</head>
+<body>
+    <input type="text" id="username"/>
+    <button id="submit">Submit Values</button>
+    <div id="error">
+    
+    </div>
+    <script>
+    
+    var button =$('#submit');
+        var textEl=$('#username')
+        button.on("click",function(){
+            if($('#username').val==''|| textEl.val()==undefined)
+                $('#error').text("The username doesnot have a proper value");
+            
+        });
+    </script>
+    
+</body>
+
+</html>

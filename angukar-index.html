@@ -1,0 +1,52 @@
+
+<!--Life cycle of Angular js
+    1.BootStrap Phase
+    2.Complication phase
+    3.Data Binding Phase   <html ng-app> there is only one app per page but multiple controller better define app in div u can still define the ng-app in html or body too--->
+
+<html >
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>  </head>
+<body>
+    
+    <div ng-app="indexApp">
+        
+    <div ng-controller="FirstController">
+    <h1> Angular js Application Index page</h1>
+        <input type="text" ng-model="name">
+        <input type="button" ng-click="showInfo()" value="change value">
+        <h3>Person Details</h3>
+        {{name}}{{person.age}}{{person.email}}
+        
+    </div>
+        <div ng-controller="SecondController">
+        <h1> Angular js Application Second page</h1>
+            {{name}}
+          </div>
+     </div>
+    
+    <script>
+    
+         var myApp=angular.module("indexApp",[]);
+        /* the indexApp define the name of app and [] is array*/
+        myApp.controller("FirstController",function($scope){
+           // $scope.name="Sheeba";
+            $scope.showInfo=function(){
+             alert("text box value:" +$scope.name);
+               //$scope.name="John Done";
+                $scope.person={
+                    name:"Jasmine Rose",
+                    age:30,
+                    email:"jane@janedoe.com"
+                }
+                debugger;
+                $scope.name=$scope.person.name;
+             }
+                    
+        });
+        myApp.controller("SecondController",function($scope){
+           $scope.name="Rani"; 
+        });
+    </script>
+</body>
+</html>

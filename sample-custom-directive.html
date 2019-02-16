@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    
+   
+    <body ng-app="DirectiveModule" ng-controller="FirstController">
+        
+         <div  hello-world></div>
+    <script>
+        
+        var directiveModule=angular.module("DirectiveModule",[]);
+        directiveModule.directive("helloWorld",function(){
+        return{
+            link:function(scope,elem,attrs,controller)
+                 {
+                elem.html("<h1> Hello World</h1>");
+                  }
+                
+            }
+        });
+        
+        directiveModule.controller("FirstController",function($scope){
+            
+        });
+    </script>
+    
+    </body>
+</html>

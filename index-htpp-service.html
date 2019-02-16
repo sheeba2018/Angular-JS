@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script  type="text/javascript" src="angular.min.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+  
+    </head>
+    <body ng-app="GitHubUsers">
+                    
+        <div ng-controller="GetUserDetails">
+            
+        <input type="button" ng-click="getUsers()" value="Get Git Hub Users"> <br/> <br>
+                        
+             <div ng-show="showUsers">     
+            <table border="1">
+                
+              <thead>
+                        <th>S.No</th>
+                        <th>Login</th>
+                        <th>Type</th>
+                        <th>site Admin</th>
+                    
+                </thead>
+                        
+                <tr ng-repeat ="user in users">
+                    <td>{{$index+1}}</td>
+                    <td>{{user.login}} </td>
+                    <td>{{user.type}}</td>
+                    <td>{{user.site_admin}} </td>
+                                
+                </tr>
+                            
+            </table> 
+            </div> <br/> <br/>
+            <input type="button" ng-click="getRepos()"  value="Get Repostories"> 
+            <input type="text" ng-model="repo"/> <br/> <br>
+            
+            <div ng-show="showRepos"> 
+            <table border="1">
+               
+                <thead>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Url</th>
+                        <th>Fork Url</th>
+                       <th>Description</th>
+                    
+                 </thead>
+                        
+                <tr ng-repeat ="repo in repos">
+                    <td>{{$index+1}}</td>
+                    <td>{{repo.full_name}} </td>
+                    <td>{{repo.url}} </td>
+                     <td>{{repo.forks_url}} </td>
+                     <td>{{repo.description}}</td>
+                                                
+                </tr>
+                            
+            </table>
+            </div>
+        
+        </div>
+        <script>
+          (function(){
+              
+              var module=angular.module("GitHubUsers", []);
+              
+        // if I am not using Any angular in-built or custom services, i can directly create a function
+              // module.controller("GetUserDetails", function($scope){});
+                module.controller("GetUserDetails",['$scope','$http', function($scope,$http){ 
+                    $scope.showUsers=false;
+                    $scope.showRepos=false;
+                    
+                    
+                  $scope.getUsers=function(){
+                  $scope.showUsers=true; //the content will be shown
+                  $scope.showRepos=false; //false will hide
+                  $http.get("https://api.gitHub.com/users").then(function(response){
+                  $scope.users=response.data;
+                   });  
+                  };
+                                                              
+                //method for Repos      
+               $scope.getRepos=function(){
+                    $scope.showRepos=true;   //the content will be shown , 
+                    $scope.showUsers=false; //false will hide in this way we are showing only one table content when they click. intially two button will show they can select.
+                   if($scope.repo=='')
+                      alert("please enter the valid key word");
+                   else
+                  {
+                  console.log("inside get repos function");
+                 //https://api.github.com/users/angular/repos // below is the url link for angular type in text box, or ruby or javascript to get repository.
+                 $http.get("https://api.gitHub.com/users/" + $scope.repo + '/repos').then(function(response){                    $scope.repos=response.data;
+                    });  
+                 }
+             }
+          }     
+       
+        ]);
+              
+          }()
+          );
+          
+        </script>
+        </body>
+</html>
+
+
+       

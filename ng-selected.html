@@ -1,0 +1,36 @@
+<html>
+<head>
+   <script  type="text/javascript" src="angular.min.js"></script>
+  <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    
+</head>
+  <body>
+    <div ng-app="myApp" ng-controller="MyController">
+        <select ng-model="stateList">
+          <!--  <option  value="ca">California</option>
+            <option  value="ny">NewYork</option>
+            <option  value="co">Colorado</option>
+            <option  value="tx">Texas</option>
+            <option  value="ci">Chicago</option>
+        <option  value="Jc">JersyCity</option> thise code will be so we are using ng-repeat --->
+       <option ng-repeat="state in states" value="{{state.key}}"> {{state.name}}</option>
+        </select>
+        </div>
+        <script>
+            var app=angular.module("myApp",[]);
+            app.controller("MyController",function($scope){
+                $scope.stateList="tx";
+                $scope.states=[
+                    {key:"ca", name:"california"},
+                    {key:"ci", name:"chicago"},
+                    {key:"ny", name:"newyork"},
+                    {key:"tx", name:"Texas"},
+                    {key:"fr", name:"Frorida"}
+                              ];
+                            });
+        
+        </script>
+    
+    </body>
+
+</html>

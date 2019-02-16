@@ -1,0 +1,19 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    <body>
+    <div ng-app="myApp" ng-controller="MyController">
+        
+        JsonFilter={{person |json}}
+    <script>
+        var app=angular.module("myApp", []);
+        app.controller("MyController", function($scope){
+        $scope.person={name:"john", address:{address1:"10 main street", city:"Austin", state:"texas", zipcode:"1234"},favcolors:["red","yellow","blue"]};
+            
+            
+        });
+    </script>    
+    </div>
+    </body>
+</html>

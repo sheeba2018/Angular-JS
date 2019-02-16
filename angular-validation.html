@@ -1,0 +1,98 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script  type="text/javascript" src="angular.min.js"></script>   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+  <script src="https://code.angularjs.org/1.4.6/angular-resource.js"></script>  
+    
+    <style>
+        body{
+        margin-left:400px;
+        margin-right:auto;
+        width:1200px;}
+        
+        div{
+            margin-bottom: 10px;
+            }
+        div>label{
+            display:block;
+        }
+        input{
+            border-radius:2px;
+        }
+        p{
+            color:red;
+        }
+            
+    </style>
+</head>
+    <body ng-app="validation" ng-controller="myAppController">
+        <h1> AngularJs Form validation </h1>
+        <form name="userform" novalidate> 
+        
+            <!-- error msg will be shown only when you enter the field and delete and go --->
+        <div> <label> Name </label>
+            <input type="text" ng-model="name"  name="name" required/>
+            <p ng-show="userform.name.$invalid && !userform.name.$pristine"> Name is required field</p>
+        </div>
+         
+    <!--  you have mention the name to look the fields in form in element tab --->
+        <div><label>User Name</label>
+    <input type="text" ng-model="username" name="username" ng-minlength="4" ng-maxlength="8"/>
+        <p ng-show="userform.username.$error.minlength"> username field is too short</p>
+        <p ng-show="userform.username.$error.maxlength"> username field is too long max char 8</p>  
+        </div>
+        
+        <div> <label> Email</label>
+            <input type="email" ng-model="email" name="email"/>
+        </div>
+      <p ng-show="userform.email.$invalid && !userform.email.$pristine"> enter valid email address field</p>
+    <!-- if you want to submit the form only all the field are filled then used ng-disabled  by checking form valid property--->
+ 
+    <!--    <div><button ng-disabled="userform.$invalid">Submit the Form Values</button></div>--->
+            <div> <button ng-click="changeName()">Submit Form Values</button> </div>          
+          
+          {{message}}<!-- var of hello world loads as soon as page loads -->
+        </form>
+        
+        <script>
+            //main module 
+            var module=angular.module("validation",['ngRoute','myServices']);
+            module.controller("myAppController", function($scope){
+                //$scope.username="john"
+              //$scope.message="HelloWorld";// this will load as soon as page loads
+                $scope.changeName=function(){
+                    $scope.name="sheeba"// this will execute when u click change button.
+                }
+             setTimeout(function(){
+         $scope.$apply(function(){  
+ //  when u mention scope.$apply no matter in which controller it will exceute in th e mentioned         angular js willl exceute all watch list functions 100 ---10,000 also value will be replicated from controller to view and view to controller
+         $scope.message="HelloWorld";// this will not  load beacuse controller is already executed and scope is not available for settimeout  
+                
+            }); 
+            },2000);
+     //any change in name the username will execute. instead this u can use change or focus
+            $scope.$watch('name',function(newValue,oldValue){
+                if(newValue!=oldValue)
+                    {
+                        
+                        alert("new value doesnt match old value");
+                    }
+            });   
+               
+            }
+        );
+    
+    // you can define in separate file and define myService in main module  as depency and start using it. main module is common modiule for all app whenever main module is loaded child module is loaded .child module becomes part of parent module.
+    var serviceModule=angular.module("myServices",[]);
+            serviceModule.factory("ajaxService",["$http",function($http){
+                $http.get("https://api.gihub.com/users");
+                
+            }]);
+        
+        
+        </script>
+        
+    </body>
+
+</html>

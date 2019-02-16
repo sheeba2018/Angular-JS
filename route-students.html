@@ -1,0 +1,49 @@
+<html>
+    <head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script  type="text/javascript" src="angular.min.js"></script>   
+   
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+    </head>
+   <body ng-app="StudentView" ng-app="HomeController">
+       
+       <a href="#/list"> StudentList</a>
+       <div>
+       <ng-view></ng-view>
+       </div>
+       
+       
+       <script>
+       var app=angular.module("StudentView",['ngRoute']);
+           app.config(function($routeProvider){
+               
+    $routeProvider.when('/list',{templateUrl:"student_list.html",controller:"StudentList"}) 
+.when('/details/:student_id/',{templateUrl:"student_details.html",controller:"StudentDetails"})
+           .otherwise({redirectTo:'/list'});
+               
+           });
+           
+           app.controller("HomeController", function($scope){
+               
+           });
+           app.controller("StudentList", function($scope){
+               $scope.students=["John","Mary","Dwight","Patrick","David","Dale"];
+               
+           });
+       app.controller("StudentDetails",['$scope','$http','$routeParams',function($scope,$http,$routeParams){
+           
+           console.log("inside");
+           
+           var id=$routeParams.student_id;
+             $scope.studentDetails=[{id:1,name:"John",grade:"First Class"},
+                                    {id:2,name:"Mary",grade:"Second Class"},
+                                    {id:3,name:"Dwight",grade:"Thrid Class"},
+                                    {id:4,name:"Patrick",grade:"Distinction Class"},                                                               {id:5,name:"David",grade:"Ranked Class"},                                                                      {id:6,name:"Dale",grade:"Fail Class"}]   
+                                                                                       
+                     $scope.reqStudent=$scope.studentDetails[id];                                                             
+                                                                                  
+             }]);
+       </script>
+        
+    </body>
+</html>

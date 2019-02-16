@@ -1,0 +1,76 @@
+
+
+
+<html>
+  <head>
+      <title>This code is for to apply css properties to function</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    
+    
+<body ng-app="DirectiveModule" ng-controller="FirstController">
+    <div><input type="text" ng-model="replaceName" placeholder="enter a new value" ng-click="clickFunc()"/>
+<input type="button" ng-click="clickButton()" value="change object"/>
+    </div>
+    
+   <person-render type="persons" replace="{{replaceName}}" clickev="clickFunc()"> </person-render>
+    
+ <person-render type="persons" replace="{{replaceName}}" clickev="clickFunc()"> </person-render>
+    
+    
+  
+    <person-render type="newpersons" replace="{{replaceName}}">Personal Details</person-render>
+        
+    <script>
+    var directiveModule=angular.module("DirectiveModule", []);
+      directiveModule.directive("personRender",function($compile){
+          return{
+            restrict:"E",
+              transclude:true,
+            scope: {replaceVal:'@replace', xyz:'=type', clickfunction:'&clickev'},
+          template:"<ul> <li ng-repeat='person in xyz' ng-click='clickfunction()'>{{person.name}} {{person.age}} {{person.email}}</li></ul>",// or u can use templateUrl
+             //templateUrl:'template_1.html',
+            
+           link:function(scope,elem,attrs,controller){
+                   elem.bind("click", function(e){
+                   alert("the object clicked is" + event.type);
+                   $('li').css({"background-color":"red"});
+                  //  $('input').hide();//this is to hide the button
+               });
+           }  // link function will not work with compile function
+              /*compile:function(ele,attr,transclusionFunc){
+                          return function($scope,ele,attr){
+                          var orignalElem=transclusionFunc($scope);
+                          var text=orignalElem.text();
+                          debugger;
+                          ele.before("<h1>"+ text + "</h1>");
+                          
+                      }
+                  }*/
+              }
+                           
+          });
+            directiveModule.controller("FirstController", function($scope){
+                $scope.replaceName="";
+               
+            $scope.persons =[{name:"sheeba", age:34, email:"sheeba@aow.com"},
+                           {name:"Alicia", age:37, email:"sheeba@aow.com"},
+                           {name:"Natasha", age:45 ,email:"sheeba@aow.com"}]; 
+                
+                $scope.clickButton=function(){
+                      
+                $scope.newpersons =[{name:"maya", age:14, email:"maya@aow.com"},
+                           {name:"lakshmi", age:44, email:"lakshmi@aow.com"},
+                           {name:"mylan", age:5 ,email:"mylan@aow.com"}];
+                }
+                $scope.clickFunc=function(){
+                    alert("inside my directive calling function");
+                    
+                
+                }
+      });  
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+ </head>
+    <body>
+      <div ng-app="myApp">
+        <div ng-controller="MyController">
+        <input type="text" ng-model="color" placeholder="Enter the color"/> <br/>   
+        For Element: <div> <hello-world> </div><br/>
+          </div>
+       
+      <div ng-controller="SecondController">
+        <input type="text"ng-model="color" placeholder="Enter the color"/> <br/>  
+       For Class: <div class="hello-World"></div>
+      For Class: <div class="hello-World"></div>
+       </div>
+             
+      <div ng-controller="ThridController">
+        <input type="text"ng-model="color" placeholder="Enter the color"/> <br/>  
+      For Attribute: <div hello-World></div>
+       </div>
+            
+        </div>
+    
+        <script>
+         var app=angular.module("myApp", []);
+            app.directive("helloWorld", function(){
+              return{
+                    restrict:'EAC',
+                    replace:true,
+            //scope: {}, is isolated  scope parent scope is not available to  dir. u can use this when u dont want same dir have the same scope from controller i..e parent.
+                    template:'<h1 style="background-color:{{color}}">Hello World</h1>',
+                    link:function(scope, elem, attrs){
+                     console.log("Element argument inside link  function" + elem);  
+                    elem.bind("click",function(){
+                    elem.css('background-color','white');
+                      });
+                    elem.bind("mouseover",function(){
+                    elem.css("cursor","pointer");                           
+                   });
+                   scope.color="blue";// you can even apply scope here this will work only when u commet compile function when compile function is there link will not work.
+                 },  // use comma to diffrentiate object
+                //compile:function(){  
+                compile: function(elem, attrs){
+                    debugger;
+                         return {
+                          pre:function(scope, ele, attrs){
+                           debugger;
+                           console.log("scope"+scope);
+                       },//comma here it is  object
+                       post:function(scope, ele, attrs){
+                           debugger;
+                           console.log("scope"+scope);
+                     elem.bind("click",function(){
+                    elem.css('background-color','red');
+                      });
+                    elem.bind("mouseover",function(){
+                    elem.css("cursor","pointer");
+                    
+                });
+                       }
+                   }
+                    
+               /* console.log("Element argument inside compile function"+ elem);
+                    elem.append ("<p> Appended withJQlite Appened Method</p>"); */ 
+             } /* u can commet here to work for link function scope.color="red";  */
+                          
+             }
+            });
+            app.controller("MyController",function($scope){
+                           $scope.name="John";
+                           $scope.color="blue";
+                
+                    
+            });
+               app.controller("SecondController",function($scope){
+                        $scope.name="Jane";
+                   $scope.color="green";
+                    
+            });
+            
+            app.controller("ThridController",function($scope){
+                        $scope.name="Jane";
+                      $scope.color="purple";
+            
+                        
+                    
+            });
+               
+            /*  */
+            
+           //ques 
+                         
+        </script>
+         

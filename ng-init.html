@@ -1,0 +1,27 @@
+<html>
+    <head>
+       <script  type="text/javascript" src="angular.min.js"></script>
+        
+    </head>
+    <body>
+        <div ng-app ng-init="person={name:'patric',age:78, email:'patric@gmail.com'}">
+        <input type="button" ng-click="showDiv=!showDiv" value="change value">
+        <div ng-show="showDiv">
+        <h1>Angular Js Application Index controller</h1>
+        <input type="text" ng-model="name"/>
+            <h3> Person Details</h3>
+            <span ng-bind="person.name"></span>
+            <span ng-bind="person.age"></span>
+            <span ng-bind="person.email"></span>   
+        </div>
+        </div>
+            
+           <script>
+         //ng-bind is allternative for {{ }}
+            </script>
+            
+        </div>
+        </div>
+        
+    </body>
+</html>

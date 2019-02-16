@@ -1,0 +1,41 @@
+<html >
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+    </head>
+<body>
+    
+    <div ng-app="indexApp" ng-controller="FirstController">
+   <!--<input type="button" ng-click="showDiv=!showDiv" value="change value">--->  
+         <input type="button" ng-click="showInfo()" value="change value"> 
+       <!-- <div ng-hide="showDiv">
+        <div ng-show="showDiv">--->
+   <div ng-controller="FirstController" ng-show="true"> 
+    <h1> Angular js Application Index page</h1>
+        <input type="text" ng-model="name">
+        <h3>Person Details</h3>
+        {{person.name}}{{person.age}}{{person.email}}
+      </div>
+     </div>
+    
+    <script>
+         var myApp=angular.module("indexApp",[]);
+        /* the indexApp define the name of app and [] is array*/
+        myApp.controller("FirstController",function($scope){
+           // $scope.name="Sheeba";
+           // $scope.showDiv=false;
+            $scope.showInfo=function(){
+             //alert("text box value:" +$scope.name);
+                    $scope.person={
+                    name:"Jasmine Rose",
+                    age:30,
+                    email:"jane@janedoe.com"
+                }
+               // $scope.showDiv=!$scope.showDiv
+                //debugger;
+                $scope.name=$scope.person.name;
+             }
+             });
+       
+    </script>
+</body>
+</html>

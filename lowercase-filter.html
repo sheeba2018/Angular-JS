@@ -1,0 +1,27 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+  
+</head>
+    
+    <body>
+    <div ng-app="myApp" ng-controller="MyController" ng-init="numbers=[32,23,45,34,56,96]">
+     
+        <input type="text" ng-model="name"/><br/>
+       lower Case {{name | lowercase}}<br/>
+        Upper Case{{name | uppercase}}
+        
+       <!-- Upper Case{{uppername | uppercase}} -->
+    </div>
+        <script>
+        // filter filter will work on only Arrays    
+        var app=angular.module("myApp", []);
+                app.controller("MyController",function($scope){
+               // $scope.name="SHEEBA POWELL";
+               // $scope.uppername="alicia powell";  
+            
+                });
+        </script>
+        
+    </body>
+</html>

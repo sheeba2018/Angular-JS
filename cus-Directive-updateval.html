@@ -1,0 +1,49 @@
+<html>
+  <head>
+      <title> This code is for to update the values in scope but is  not working</title>
+      <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    
+    
+<body ng-app="DirectiveModule" ng-controller="FirstController">
+    <div><input type="text" ng-model="replaceName" placeholder="enter a new value" ng-click="clickFunc()"/> </div>
+    
+    <person-render type="persons" replace="{{replaceName}}" clickev="clickFunc()"></person-render>
+    <person-render type="newpersons" replace="{{replaceName}}"></person-render>
+        
+    <script>
+    var directiveModule=angular.module("DirectiveModule", []);
+      directiveModule.directive("personRender",function($compile){
+          return{
+              restrict:"E",
+              scope: {replaceVal:'@replace', xyz:'=type', clickfunction:'&clickev'},
+
+        template:"<ul> <li ng-repeat='person in xyz' ng-click='clickfunction()'>{{person.name}} {{person.age}} {{person.email}} {{replaceVal}}</li></ul>",
+           link:function(scope,elem,attrs,controller){// or use with $scope or scope
+                  debugger;
+            console.log("attr value inside link function:"+ attrs.type);
+               scope.xyz[0].name=scope.replaceVal;//use with $scope
+                // scope.xyz[0].name=$scope.replaceVal;
+            
+            }  
+          }
+          });
+            directiveModule.controller("FirstController", function($scope){
+                $scope.replaceName="";
+               
+            $scope.persons =[{name:"sheeba", age:34, email:"sheeba@aow.com"},
+                           {name:"Alicia", age:34, email:"sheeba@aow.com"},
+                           {name:"Natasha", age:34 ,email:"sheeba@aow.com"}];                             
+                
+                $scope.newpersons =[{name:"maya", age:14, email:"maya@aow.com"},
+                           {name:"lakshmi", age:44, email:"lakshmi@aow.com"},
+                           {name:"mylan", age:5 ,email:"mylan@aow.com"}];
+                $scope.clickFunc=function(){
+                    alert("inside my directive calling function");
+                    
+                }
+      });  
+        
+    </script>
+</body>
+</html>

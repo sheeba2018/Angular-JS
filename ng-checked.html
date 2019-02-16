@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+        <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+            <input type="checkbox" ng-model="checkbox1"/>
+    Check this box:<input type="checkbox" ng-model="checkbox2" ng-checked="checkbox1">
+                      
+        </div>
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+                
+            });
+     
+        </script>    
+        
+    </body>
+
+</html>

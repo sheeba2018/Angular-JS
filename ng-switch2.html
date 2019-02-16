@@ -1,0 +1,55 @@
+<html>
+    <head>
+     <script  type="text/javascript" src="angular.min.js"></script>
+        <style>
+            li{margin:10px; background:red; color:white;}
+            ul{display:-webkit-box;}
+        </style>
+     
+    </head>
+    <body>
+    <div ng-app="myApp" ng-controller="MyController">
+        <ul>
+        <li><a href="#" ng-click="page='home'">Home</a></li>
+        <li><a href="#" ng-click="page='about'">About</a></li>
+        <li><a href="#" ng-click="page='contactus'">Contactus</a></li>
+            <li><a href="#" ng-click="page='news'">News</a></li>
+        </ul>
+        
+        <div ng-switch on="page">
+            
+        <div ng-switch-when="home">
+           <ng-include src="'home.html'"></ng-include>
+        </div>
+            
+        <div ng-switch-when="about">
+          <ng-include src="'about.html'"></ng-include>
+        </div>
+            
+        <div ng-switch-when="contactus">
+             <ng-include src="'contactus.html'"></ng-include>
+        </div> 
+            
+        <div ng-switch-when="news">
+           <ng-include src="'news.html'"></ng-include>
+         </div>
+            
+         <div ng-switch-default> 
+            <ng-include src="'defaultpage.html'"></ng-include>
+         </div>
+            
+         </div>
+        </div>
+        
+        
+        <script>
+         var app=angular.module("myApp", []);
+          app.controller("MyController", function($scope){
+            //
+              $scope.page=news;  
+          });    
+        
+        </script>
+    </body>
+
+</html>

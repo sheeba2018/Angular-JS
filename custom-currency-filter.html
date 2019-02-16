@@ -1,0 +1,41 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    <body>
+    <div ng-app="myApp" ng-controller="MyController" ng-init="numbers=[25,46,67,87,76,98]">
+        
+       
+        {{ price | customCurrency:'$':true}} <!-- false gives $ symber after number-->
+        
+        </div>
+        
+        <script>
+        var app=angular.module("myApp",[]);
+            
+        app.filter('customCurrency', function(){
+            return function(input,symbol,placement)
+            {
+                if(isNaN(input))
+                    return input;
+                else{
+                    if(placement)
+                    input=symbol+input;
+                    else
+                    input=input+symbol;
+                    }
+                return input;
+                }
+            });
+              
+        
+        app.controller("MyController", function($scope){
+        
+             $scope.price=9876.98;
+        });
+        
+            
+    </script>    
+
+    </body>
+</html>

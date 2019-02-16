@@ -1,0 +1,93 @@
+<html>
+    
+  <head>
+     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script  type="text/javascript" src="angular.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+      <script src="https://code.angularjs.org/1.4.6/angular-resource.js"></script>
+      <style>
+          tr,thead{
+              border:1px solid black;
+          }
+          td,th{
+              border: 1px solid black;
+          }
+      </style>
+  </head>
+ <body ng-app="ResourceApp">
+     
+    <div ng-controller="ResourceController">
+    
+        <input type="button" ng-click="loadData()" value="LoadUsers"/>
+        <input type="text" ng-model="id"/>
+        
+        <table style="border:1px solid black">
+            <thead>
+            <th>id</th>
+            <th> name </th>
+                <th>user name</th>
+                <th>email</th>
+                <th>address(street)</th>
+                <th>city</th>
+                <th> zipcode</th>
+            </thead>
+            <!-- <tr ng-repeat=" user in users">  ng-repeat is used for array of values not now id-->
+            <tr ng-show="showRow">
+            <td>{{users.id}}</td>
+            <td>{{users.name}}</td>
+            <td>{{users.username}}</td>
+            <td>{{users.email}}</td>
+             <td>{{users.address.street}}</td>
+            <td>{{users.address.city}}</td>
+            <td>{{users.address.zipcode}}</td>
+                
+            </tr>
+        
+        </table>
+            
+     <script>
+        (function(){
+            
+          var  module=angular.module("ResourceApp",['ngRoute','ngResource']);
+          module.factory("UserService",['$http','$resource',function($http,$resource){
+              
+              return{
+                  getUserwithHttpSevice:function(){
+                      return $http.get('http://jsonplaceholder.typicode.com/users');
+                  },
+                
+                  getUserwithResourceSevice:function(id){
+     return data=$resource('http://jsonplaceholder.typicode.com/users/:id',{id:id}).get();
+//explain  {id:id} here  :id is coming from ng-model then we passed in function as scope and here.
+     //for hard code the id no//('http://jsonplaceholder.typicode.com/users/:id',{id:'5'}).get();
+      //the dynamic value and id object must be it will replace the dynamic value by object
+             // ('http://jsonplaceholder.typicode.com/users/:id').query(); // query to get all
+                  }
+             } 
+              
+          }]);   
+            
+     module.controller("ResourceController",['$scope','UserService',function($scope,Userservice){
+                
+                $scope.loadData=function(){
+               $scope.showRow=true;
+             var query=Userservice.getUserwithResourceSevice($scope.id);// id from  text box value
+                    query.$promise.then(function(data){
+                        $scope.users=data;
+                    });
+                   
+                    
+                }
+            
+            }]);
+                
+                
+            })();
+            
+     </script>
+        
+        </div>
+    
+ </body>
+    
+</html>

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+        <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+            <input type="text" ng-model="currentValue" ng-change="changed()"/>
+            
+          <p>  Display {{changedValue}} </p>
+            
+            <div>Current Value:{{currentValue}}</div>
+        </div>
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+                $scope.currentValue='';
+                $scope.changed=function(){
+                $scope.changedValue=$scope.currentValue+'value changed';
+            };
+            });
+     
+        </script>    
+        
+    </body>
+
+</html>

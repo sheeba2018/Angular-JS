@@ -1,0 +1,34 @@
+<html>
+<head>
+     <script  type="text/javascript" src="angular.min.js"></script>
+     
+</head>
+    <body>
+       
+        <div ng-app="myApp" ng-controller="MyController">
+        <div ng-switch on="numberVal">
+        <div ng-switch-when="one">
+            Element One
+        </div>
+        <div ng-switch-when="two">
+            Element two
+        </div> 
+        <div ng-switch-when="three">
+            Element three
+        </div>     
+         <div ng-switch-default> 
+             Default Value
+         </div>    
+            </div>
+        </div>
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+             $scope.numberVal="one";   
+            });
+        
+        </script>
+    
+    </body>
+    
+</html>

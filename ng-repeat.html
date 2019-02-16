@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+        <script src= "https://code.jquery.com/jquery-2.2.0.js"></script>
+    </head>
+    <body>
+        <div ng-app ng-init="arr=[20,30,48,57,77,66,89,56]">
+            
+        <ul type="none">
+            <li  ng-repeat="x in arr">{{$index}} {{x}}</li>
+            <li  ng-repeat="x in arr">{{$index+1}} {{x}}</li>
+            <li  ng-repeat="x in arr">{{$first}} {{x}}</li>
+             <li  ng-repeat="x in arr">{{$even}} {{x}}</li>
+            <li  ng-repeat="x in arr">{{$odd}} {{x}}</li>
+            <li  ng-repeat="x in arr">{{$last}} {{x}}</li>
+            <li  ng-repeat="x in arr">{{$middle}} {{x}}</li>
+                  
+        </ul>
+        
+        </div>
+        
+          
+        
+    </body>
+
+</html>

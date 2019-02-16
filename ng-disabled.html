@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+     </head> 
+        <body>
+            
+       <div ng-app="myApp" ng-controller="MyController"> 
+ <input type="text"  ng-model="FirstName" placeholder="First Name" ng-disabled="true"> <br/> 
+  <input type="text"  ng-model="FirstName" placeholder="Second Name"  ng-disabled="isDisablled"> 
+            </div>
+            <script>
+             var app=angular.module("myApp", []);
+             app.controller("MyController", function($scope){
+            
+                 $scope.isDisablled=true;
+           
+                 debugger;
+             });    
+            
+            </script>
+            
+        </body>
+    
+</html>
+
+
+ 

@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+  
+</head>
+    
+    <body>
+    <div ng-app="myApp" ng-controller="MyController"  ng-init="numbers=[32,23,45,34,56,96]">
+     zero: {{number | number:o}}   <br/> <!--zero decimal -->
+     one:   {{number | number:1}} <br/> <!--one  decimal and so on---->
+        {{number | number:2}} <br/>
+        {{number | number:3}} <br/>
+        {{number | number:4}} <br/>
+        {{number | number:5}} <br/>
+        {{number | number:6}} <br/>
+        {{number | number:7}} <br/>
+     
+    </div>
+        <script>
+        // filter filter will work on only Arrays    
+        var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+            $scope.number=65748644.987675181217;
+              
+                });
+        </script>
+        
+    </body>
+</html>

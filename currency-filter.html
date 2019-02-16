@@ -1,0 +1,26 @@
+<html>
+    <head>
+         <script  type="text/javascript" src="angular.min.js"></script>
+ 
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+         dollar: {{price | currency}}<br/>
+         pound:    {{prices| currency:"&#xa3;"}}
+            
+            </div>
+            
+        </div>
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+                $scope.price=99.888;
+                $scope.prices=455.98;
+               
+            });
+        
+        </script>
+    
+    </body>
+
+</html>

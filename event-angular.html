@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+     
+     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script  type="text/javascript" src="angular.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+     
+    </head>
+    
+    <body ng-app="myApp">
+        <div ng-controller= "myController">
+<!-- ev will get $event only whenever you click pagex, page y will get event-->
+        <div ng-repeat="number in [10, 20, 30, 40, 50]"  ng-click="ev=$event">    
+            {{$index+1}} {{number}} {{ev.pagex}} {{ev.pagey}}
+         </div> </br>
+        
+        <div ng-repeat="number in [10, 20, 30, 40, 50]"  ng-click="eventFunc($event)">    
+            {{$index+1}} {{number}} {{ev.pagex}} {{ev.pagey}}
+         </div>
+        
+        </div>
+        <script>
+         var module=angular.module("myApp",[]);
+            module.config(function($logProvider)
+            {
+                $logProvider.debugEnabled(true);
+            });
+            
+            module.run(function($rootScope,$log){
+                $rootScope.$log=$log;
+            });
+            module.controller("myController",['$scope','$log', function($scope,$log){
+                $scope.eventFunc=function($event)
+                {
+                    $log.debug("Inside event function"+ $event);
+                    $event.pagex=100;
+                }
+                
+            }]);
+        //rootScope is for all application it loads when application loads. config is to provide to show the log output during production time or not.
+        </script>
+    
+    </body>
+</html>

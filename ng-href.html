@@ -1,0 +1,23 @@
+<html>
+<head>
+        <script  type="text/javascript" src="angular.min.js"></script>
+     </head
+    
+    <body>
+        <div ng-app="myApp" ng-controller="MyController">
+      <!--  <a href="{{search_url}}">Click here to search</a> --->
+            <a ng-href="https://www.google.com/#{{search_url}}">Click here to search</a>
+            
+         </div>    
+        <script>
+         var app=angular.module("myApp", []);
+         app.controller("MyController",function($scope){
+            //$scope.search_url="http://www.google.com";
+            $scope.search_url="q=angular%20js";
+        });
+        
+        </script>
+    </body>
+    
+
+</html>

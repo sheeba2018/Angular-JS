@@ -1,0 +1,44 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    
+   
+    <body ng-app="DirectiveModule" ng-controller="FirstController">
+     <div  hello-world message="Hello Sheeba"> </div><br> <!-- are the directives gets the same scope-->
+        <div  hello-world  message= "{{message2}}" name="Sheeba">></div><br><!--instead of "hello world" passing var here u can use {{}}  ---->
+        <div  hello-world  message="{{message3}}"></div><br>
+        <div  hello-world  message="{{message4}}"></div><br>
+        <div  hello-world  message="{{message5}}"></div><br>
+        
+    <div > <hello-world message="{{message6}}" name="Alicia"> </div><br><!-- even this directive gets same controller scope -->
+    <script>
+        
+        var directiveModule=angular.module("DirectiveModule",[]);
+        directiveModule.directive("helloWorld",function($compile){
+        return{
+          //scope:{}, // when is empty it will not access any value in controller to access u use diffrent property. controller
+         //   scope each text box has own scope and dont want the controller scope use scope{},it is an empty object it basicaly accepts object literal.
+        scope:{simpledata:"@message",name:"@name"},//using @symbol we are just passing string.
+            link:function(scope,elem,attrs,controller)
+                 {
+               var htmlEl="<input type='text' ng-model='simpledata'/> {{simpledata}} {{name}}"
+                 elem.append(($compile(htmlEl)(scope)));
+                  }
+                
+            }
+        });
+        
+        directiveModule.controller("FirstController",function($scope){
+            $scope.message1="Hello";
+            $scope.message2="Hello";
+            $scope.message3="Hello";
+            $scope.message4="Hello-world";
+           $scope.message5="Hello-world";
+            $scope.message6="Hello-world";
+
+        });
+    </script>
+    
+    </body>
+</html>

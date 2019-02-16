@@ -1,0 +1,36 @@
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body{
+            padding :50px;
+        }
+    </style>
+</head>
+    <body ng-app class="container">
+        
+        <script>
+            // making function scope private
+        (function(){
+           var x=10;
+            console.log("x value is:"+x);
+                    
+        }) ()
+        
+        console.log("x value outside is:" +x)
+        // x is private not part of global scope
+        
+        </script>
+    
+    
+    </body>
+
+
+</html>
+
+
+
+
+  

@@ -1,0 +1,26 @@
+<html>
+<head>
+     <script  type="text/javascript" src="angular.min.js"></script>
+</head>
+    
+    <body>
+    <div ng-app="myApp" ng-controller="MyController" ng-init="numbers=[20,33,44,56,67,69,58]">
+         
+       Original Array: {{arr}}<br/>
+       OrderBy Array: {{arr | orderBy:val}}<br/>
+        
+        </div>
+       
+        <script>
+            var app=angular.module("myApp", []);
+            app.controller("MyController", function($scope){
+                
+                $scope.arr=[2,4,5,7,8,9,10,7,6,1,0,3];
+                $scope.val=angular.identity;
+            });
+        
+        </script>
+    
+    </body>
+    
+</html>

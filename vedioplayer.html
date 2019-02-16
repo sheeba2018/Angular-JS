@@ -1,0 +1,73 @@
+
+<html>
+<head>
+    <script  type="text/javascript" src="angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body{
+            padding :50px;
+        }
+    </style>
+</head>
+    <body ng-app="myApp"  class="container">
+        <div class="row">
+            <div class="form-group col-lg-12" ng-controller="AppController">
+            <input type="text" class="form-control"  ng-model="video"/><br/> 
+              
+                
+            <youtube-video video1="zden0QwqoBY"></youtube-video>    
+           <youtube-video video1="AHtRtLRmYbo"></youtube-video>   
+           <youtube-video video1="aAxGTnVNJiE"></youtube-video> 
+           <youtube-video video1="Eh_0PzIsv5g"></youtube-video> 
+           <youtube-video video1="zden0QwqoBY"></youtube-video>
+                    
+            </div>
+        </div>
+        
+        <script>
+        (function(){
+          var app=angular.module("myApp",[]);
+            app.controller("AppController", function($scope){
+               
+                 $scope.video="Eh_0PzIsv5g";
+                
+                
+                          
+            });
+            app.directive("youtubeVideo", function($sce){
+                return {
+                    restrict:'E',
+                    replace:true,
+                    template:'<div class="col-lg-4"><iframe width="100%" Height="100%" src="{{url}}" frameborder="1" allowfullscreen>',
+                    // since we use " quote so we single' to close.
+                    scope:{
+                    video:"@video1"
+                    
+                   },
+                link:function(scope,elem,attrib){
+                    console.log("vedio code:" + scope.video);
+                    
+                scope.url=$sce.trustAsResourceUrl("http://youtube.com/embed/" + scope.video);
+                
+            }        
+                }
+                
+            });
+           
+                    
+        }) ()
+        
+      
+        </script>
+    
+    
+    </body>
+
+
+</html>
+
+
+
+
+  
